@@ -1,0 +1,13 @@
+---
+- name: Automatically accept the Oracle License
+  debconf:
+    name: "{{ java_apt_package }}"
+    question: 'shared/accepted-oracle-license-v1-1'
+    value: 'true'
+    vtype: 'select'
+
+- name: Install Java
+  apt:
+    name: "{{ java_apt_package }}"
+    state: present
+    update_cache: yes
