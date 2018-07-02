@@ -1,2 +1,3 @@
 ---
 java_apt_package: oracle-java8-installer
+java_yum_package: java-1.8.0-openjdk
