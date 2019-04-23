@@ -2,7 +2,7 @@
 - name: Automatically accept the Oracle License for PPA (Debian/Ubuntu)
   debconf:
     name: "{{ java_deb_ppa_package }}"
-    question: 'shared/accepted-oracle-license-v1-1'
+    question: "{{ java_deb_ppa_question }}"
     value: 'true'
     vtype: 'select'
   when:
