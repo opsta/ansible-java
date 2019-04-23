@@ -1,1 +1,9 @@
 ---
+java_deb_method: apt # apt or ppa
+
+java_deb_apt_package: openjdk-8-jdk
+
+java_deb_ppa: linuxuprising/java
+java_deb_ppa_package: oracle-java11-installer # java11 or java12
+
+java_rhe_yum_package: java-1.8.0-openjdk

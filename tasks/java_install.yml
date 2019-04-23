@@ -1,22 +1,35 @@
 ---
-- name: Automatically accept the Oracle License (Debian/Ubuntu)
-  when: ansible_os_family == "Debian"
+- name: Automatically accept the Oracle License for PPA (Debian/Ubuntu)
   debconf:
-    name: "{{ java_apt_package }}"
+    name: "{{ java_deb_ppa_package }}"
     question: 'shared/accepted-oracle-license-v1-1'
     value: 'true'
     vtype: 'select'
+  when:
+    - ansible_os_family == "Debian"
+    - java_deb_method == "ppa"
 
-- name: Install Java (Debian/Ubuntu)
-  when: ansible_os_family == "Debian"
+- name: Install Java APT package (Debian/Ubuntu)
   apt:
-    name: "{{ java_apt_package }}"
+    name: "{{ java_deb_apt_package }}"
     state: present
     update_cache: yes
+  when:
+    - ansible_os_family == "Debian"
+    - java_deb_method == "apt"
 
-- name: Install Java (RedHat)
-  when: ansible_os_family == "RedHat"
-  yum:
-    name: "{{ java_yum_package }}"
+- name: Install Java PPA package (Debian/Ubuntu)
+  apt:
+    name: "{{ java_deb_ppa_package }}"
     state: present
     update_cache: yes
+  when:
+    - ansible_os_family == "Debian"
+    - java_deb_method == "ppa"
+
+- name: Install Java (RedHat/CentOS)
+  yum:
+    name: "{{ java_rhe_yum_package }}"
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
