@@ -1,7 +1,7 @@
 ---
-- name: Add Java PPA (Debian/Ubuntu)
+- name: Add Java PPA (Ubuntu/Debian)
   apt_repository:
     repo: "{{ java_deb_ppa }}"
   when:
-    - ansible_os_family == "Debian"
-    - java_deb_method == "ppa"
+    - ansible_os_family == 'Debian'
+    - java_deb_method == 'ppa'

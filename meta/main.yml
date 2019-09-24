@@ -10,7 +10,8 @@ galaxy_info:
     versions:
     - trusty
     - xenial
-  - name: RedHat
+    - bionic
+  - name: EL
     versions:
     - 7
   galaxy_tags:
