@@ -1,33 +1,12 @@
 ---
-- name: Automatically accept the Oracle License for PPA (Ubuntu/Debian)
-  debconf:
-    name: "{{ java_deb_ppa_package }}"
-    question: "{{ java_deb_ppa_question }}"
-    value: 'true'
-    vtype: 'select'
-  when:
-    - ansible_os_family == 'Debian'
-    - java_deb_method == 'ppa'
-
-- name: Install Java APT package (Ubuntu/Debian)
+- name: Install Java package (Ubuntu/Debian)
   apt:
-    name: "{{ java_deb_apt_package }}"
+    name: "{{ java_apt_package }}"
     state: present
     update_cache: yes
-  when:
-    - ansible_os_family == 'Debian'
-    - java_deb_method == "apt"
+  when: ansible_os_family == 'Debian'
 
-- name: Install Java PPA package (Ubuntu/Debian)
-  apt:
-    name: "{{ java_deb_ppa_package }}"
-    state: present
-    update_cache: yes
-  when:
-    - ansible_os_family == 'Debian'
-    - java_deb_method == 'ppa'
-
-- name: Install Java (CentOS/RHEL)
+- name: Install Java package (CentOS/RHEL)
   yum:
     name: "{{ java_yum_package }}"
     state: present
